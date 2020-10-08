@@ -1,0 +1,29 @@
+{
+  "name": "coding-challenges",
+  "version": "1.0.0",
+  "description": "All of my coding challenges from HackerRank",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jamesnixon197/coding-challenges.git"
+  },
+  "keywords": [
+    "hacker",
+    "coding",
+    "challenge",
+    "kata"
+  ],
+  "author": "James Nixon",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jamesnixon197/coding-challenges/issues"
+  },
+  "homepage": "https://github.com/jamesnixon197/coding-challenges#readme",
+  "devDependencies": {
+    "eslint": "^7.10.0",
+    "jest": "^26.5.2"
+  }
+}
