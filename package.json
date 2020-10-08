@@ -23,9 +23,13 @@
   },
   "homepage": "https://github.com/jamesnixon197/coding-challenges#readme",
   "devDependencies": {
+    "@types/jest": "^26.0.14",
+    "@typescript-eslint/eslint-plugin": "^4.4.0",
+    "@typescript-eslint/parser": "^4.4.0",
     "eslint": "^7.10.0",
-    "eslint-config-airbnb-base": "^14.2.0",
     "eslint-plugin-import": "^2.22.1",
-    "jest": "^26.5.2"
+    "jest": "^26.5.2",
+    "ts-jest": "^26.4.1",
+    "typescript": "^4.0.3"
   }
 }
