@@ -25,7 +25,7 @@ Contains `n` space-separated integers representing the array's elements.
 ### Constraints
 
 ```
-0 <=n, ar[i] <= 100
+0 <= n, ar[i] <= 100
 ```
 
 ### Output Format
