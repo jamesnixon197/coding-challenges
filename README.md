@@ -10,3 +10,4 @@ Coding challenges on HackerRank with an explanation of how I solved each one.
 - [Staircase](https://github.com/jamesnixon197/coding-challenges/blob/main/challenges/staircase)
 - [Product of Integers](https://github.com/jamesnixon197/coding-challenges/blob/main/challenges/product-of-integers)
 - [Mini-Max Sum](https://github.com/jamesnixon197/coding-challenges/blob/main/challenges/mini-max-sum)
+- [Birthday Cake Candles](https://github.com/jamesnixon197/coding-challenges/blob/main/challenges/birthday-cake-candles)
