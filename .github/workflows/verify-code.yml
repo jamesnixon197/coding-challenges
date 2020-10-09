@@ -1,6 +1,6 @@
 on: "push"
 
-name: Code is verified
+name: Code verification
 
 jobs:
   setupAndTest:
