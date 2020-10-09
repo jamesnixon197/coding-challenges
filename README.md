@@ -1,3 +1,5 @@
+![Jest Test Suite](https://github.com/jamesnixon197/coding-challenges/workflows/Run%20the%20Jest%20test%20suite/badge.svg?branch=main)
+
 # coding-challenges
 Coding challenges on HackerRank with an explanation of how I solved each one.
 
