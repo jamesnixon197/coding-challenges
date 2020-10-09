@@ -1,6 +1,6 @@
 on: "push"
 
-name: Run the Jest test suite
+name: Code is verified
 
 jobs:
   setupAndTest:
