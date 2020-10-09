@@ -3,6 +3,7 @@ type totalNumberList = {
     positiveNumbers: number;
     zeros: number;
 };
+
 export default (
     numberOfDecimals: number,
     numbers: number[]
