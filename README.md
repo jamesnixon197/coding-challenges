@@ -1,4 +1,4 @@
-![Code is verified](https://github.com/jamesnixon197/coding-challenges/workflows/Code%20is%20verified/badge.svg?branch=main)
+![Code is verified](https://github.com/jamesnixon197/coding-challenges/workflows/Code%20verification/badge.svg?branch=main)
 
 # coding-challenges
 Coding challenges on HackerRank with an explanation of how I solved each one.
