@@ -1,7 +1,4 @@
-on:
-  push:
-    paths:
-      - '**/challenges/**'
+on: "push"
 
 name: Run the Jest test suite
 
