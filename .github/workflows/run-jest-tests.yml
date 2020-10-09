@@ -4,7 +4,7 @@ name: Run the Jest test suite
 
 jobs:
   setupAndTest:
-    name: Run all tests
+    name: Run all tests & lint the code
     runs-on: ubuntu-latest
     env:
       node-version: '13.10.1'
@@ -27,4 +27,5 @@ jobs:
       if: steps.cache-npm.outputs.cache-hit != 'true'
     - name: Jest Test Suite
       run: npm run test
-      working-directory: ${{env.working-directory}}
+    - name: Lint code
+      run: npm run lint

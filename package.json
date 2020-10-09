@@ -4,7 +4,8 @@
   "description": "All of my coding challenges from HackerRank",
   "main": "index.js",
   "scripts": {
-    "test": "jest --runInBand"
+    "test": "jest --runInBand",
+    "lint": "eslint ."
   },
   "repository": {
     "type": "git",
