@@ -14,4 +14,4 @@ I then return the array of the rounded grades.
 
 ## HackerRank Problem link
 
-https://www.hackerrank.com/challenges/grading-students/problem
+https://www.hackerrank.com/challenges/grading/problem
