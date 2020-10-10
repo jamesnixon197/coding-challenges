@@ -15,3 +15,24 @@ Coding challenges on HackerRank with an explanation of how I solved each one.
 - [Birthday Cake Candles](https://github.com/jamesnixon197/coding-challenges/blob/main/challenges/birthday-cake-candles)
 - [Time Conversion](https://github.com/jamesnixon197/coding-challenges/blob/main/challenges/time-conversion)
 
+## Building Code
+
+If you would, for whatever reason, like to build these projects into javascript just run:
+`npm run build`
+
+The build output will appear in a `dist` folder in the source directory.
+
+## Testing the code
+
+To run the full test suite just run:
+`npm run test`
+
+To run with a generated coverage report run:
+`npm run test:coverage`
+
+A coverage folder should then be generated in the source directory
+
+## Linting the code
+
+I use `eslint` to lint the code, to run the linter manually run:
+`npm run lint`
