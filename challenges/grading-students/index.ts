@@ -1,4 +1,4 @@
-export default (gradeNumbers: number[]) => {
+export default (gradeNumbers: number[]): number[] => {
     const roundedNumbers: number[] = [];
 
     gradeNumbers.forEach(grade => {
