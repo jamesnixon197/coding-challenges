@@ -15,6 +15,7 @@ Coding challenges on HackerRank with an explanation of how I solved each one.
 - [Birthday Cake Candles](https://github.com/jamesnixon197/coding-challenges/blob/main/challenges/birthday-cake-candles)
 - [Time Conversion](https://github.com/jamesnixon197/coding-challenges/blob/main/challenges/time-conversion)
 - [Grading Students](https://github.com/jamesnixon197/coding-challenges/blob/main/challenges/grading-students)
+- [Apple and Orange](https://github.com/jamesnixon197/coding-challenges/blob/main/challenges/apple-and-orange)
 
 ## Building the Code
 
