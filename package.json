@@ -6,7 +6,7 @@
   "scripts": {
     "test": "jest --runInBand",
     "test:coverage": "jest --runInBand --collectCoverage",
-    "lint": "eslint .",
+    "lint": "eslint . --max-warnings=0",
     "build": "tsc"
   },
   "repository": {
