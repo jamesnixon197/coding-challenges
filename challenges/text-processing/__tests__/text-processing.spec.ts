@@ -111,7 +111,7 @@ describe('getPercentageOfWordAppearances', () => {
                 1
             );
 
-            expect(percentageOfWordAppearances).toBe(82);
+            expect(percentageOfWordAppearances).toBe(82.29);
         });
     });
 });
@@ -120,7 +120,7 @@ describe('getAverageNumberOfWordsPerSentence', () => {
     it('should return the average number of words per sentence', async () => {
         const average = getAverageNumberOfWordsPerSentence(testText);
 
-        expect(average).toBe(11);
+        expect(average).toBe(12);
     });
 });
 
@@ -172,11 +172,11 @@ describe('getProminenceOfMostPopularWord', () => {
             const wordProminence = getProminenceOfMostPopularWord(testText, 5);
 
             expect(wordProminence).toStrictEqual([
-                [ 'non', 58 ],
-                [ 'est', 53 ],
-                [ 'enim', 46 ],
-                [ 'mihi', 63 ],
-                [ 'ut', 39 ]
+                [ 'non', 57.86 ],
+                [ 'est', 53.40 ],
+                [ 'enim', 46.09 ],
+                [ 'mihi', 62.54 ],
+                [ 'ut', 38.92 ]
             ])
         });
     });

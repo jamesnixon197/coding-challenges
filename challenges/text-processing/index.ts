@@ -58,9 +58,7 @@ export const getPercentageOfWordAppearances = (
         (word) => wordTally[word] && wordTally[word].appearances === numberOfAppearances
     );
 
-    return Math.round(
-        totalWordsAppearedInThreshold.length / words.length * 100
-    )
+    return +(totalWordsAppearedInThreshold.length / words.length * 100).toFixed(2);
 }
 
 export const getAverageNumberOfWordsPerSentence = (text: string): number => {
@@ -93,11 +91,11 @@ export const getProminenceOfMostPopularWord = (text: string, maxPopularityIndex:
             0
         );
 
-        const prominence = Math.round(
+        const prominence = +(
             (totalWords - (
                 (positionsSum - 1) / listOfWordPositions.length)
             ) * (100 / totalWords)
-        );
+        ).toFixed(2);
 
         return [wordTally[0], prominence]
     });
@@ -149,9 +147,9 @@ const getSortedTallyTuple = (textList: string[]): textTallyTuple[] => {
 
 const arrayIsInvalid = (array: unknown[]): boolean => !Array.isArray(array) || array.length < 1;
 
-const getListOfWords = (text: string) => matchTextAgainstRegex(text, /([a-z]+)[ .]/g);
+const getListOfWords = (text: string) => matchTextAgainstRegex(text, /([A-Za-z-]+)[ .]?/g);
 
-const getListOfSentences = (text: string) => matchTextAgainstRegex(text, /([a-z ]+)\./g);
+const getListOfSentences = (text: string) => matchTextAgainstRegex(text, /([A-Za-z- ]+)\./g);
 
 const getListOfPhrases = (text: string, numberOfWords: number) => {
     const wordPhraseRegex = Array(numberOfWords).fill('\\w+').join(' ');
