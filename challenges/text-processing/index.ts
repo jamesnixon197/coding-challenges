@@ -1,53 +1,73 @@
-type textTallyTuple = [string, number]
+type textTallyTuple = [string, number, number[]]
 
 type textTally = {
-    [key: string]: { appearances: number }
+    [key: string]: { appearances: number, positions: number[] }
 };
 
-export const getTotalWords = (text: string): number => getListOfWords(text).length;
-export const getTotalSentences = (text: string): number => getListOfSentences(text).length;
+export const getTotalWords = (text: string): number => {
+    const listOfWords = getListOfWords(text);
 
-export const getLengthOfLongestWord = (text: string): number => {
-    const words = getListOfWords(text);
+    if (arrayIsInvalid(listOfWords)) return 0;
 
-    const orderedWords = words.sort((word, previousWord) => previousWord.length - word.length)
-
-    return orderedWords[0].length;
+    return listOfWords.length;
 }
 
-export const getSortedWordAppearanceTally = (text: string): textTallyTuple[] => {
-    const words = getListOfWords(text);
+export const getTotalSentences = (text: string): number => {
+    const listOfSentences = getListOfSentences(text);
 
-    return getSortedTallyTuple(words);
+    if (arrayIsInvalid(listOfSentences)) return 0;
+
+    return listOfSentences.length;
 }
 
-export const getSortedPhraseAppearanceTally = (text: string, numberOfWords: number): textTallyTuple[] => {
+export const getWordsOrderedByLength = (text: string): string[] => {
+    const words = getListOfWords(text);
+
+    if (arrayIsInvalid(words)) return [];
+
+    return words.sort((word, previousWord) => previousWord.length - word.length);
+}
+
+// Could possibly combine getSortedWordAppearanceTally & getSortedPhraseAppearanceTally
+export const getWordsOrderedByAppearance = (text: string): string[] =>
+    getTextTupleOrderedByAppearance(text).map((textTally) => textTally[0]);
+
+export const getPhrasesOrderedByAppearance = (text: string, numberOfWords: number): string[] => {
     if (numberOfWords < 2) throw new Error('Number of words must be greater than or equal to 1');
 
-    const phrases = getListOfPhrases(text, numberOfWords);
-
-    return getSortedTallyTuple(phrases);
+    return getTextTupleOrderedByAppearance(text, numberOfWords).map(
+        (textTally) => textTally[0]
+    );
 }
 
-export const getPercentageOfWordAppearances = (text: string, numberOfAppearances: number): number => {
-    if (numberOfAppearances < 1) throw new Error('Number of appearances must be greater than or equal to 1');
+export const getPercentageOfWordAppearances = (
+    text: string,
+    numberOfAppearances: number
+): number => {
+    if (numberOfAppearances < 1)
+        throw new Error('Number of appearances must be greater than or equal to 1');
 
-    const words = getListOfWords(text);
-    const wordTally = getAppearanceTally(words);
-    const allWords = Object.keys(wordTally);
+    const wordTally = getAppearanceTally(
+        getListOfWords(text)
+    );
 
-    const totalWords = allWords.length;
-    const totalWordsAppearedInThreshold = allWords.filter(
+    const words = Object.keys(wordTally);
+
+    // Filters out words that don't appear the provided amount
+    const totalWordsAppearedInThreshold = words.filter(
         (word) => wordTally[word] && wordTally[word].appearances === numberOfAppearances
-    ).length;
+    );
 
-    return Math.round(totalWordsAppearedInThreshold/totalWords * 100)
+    return Math.round(
+        totalWordsAppearedInThreshold.length / words.length * 100
+    )
 }
 
 export const getAverageNumberOfWordsPerSentence = (text: string): number => {
     const sentences = getListOfSentences(text);
-
-    const totalWordsInSentences = sentences.map((sentence) => getListOfWords(sentence).length);
+    const totalWordsInSentences = sentences.map(
+        (sentence) => getListOfWords(sentence).length
+    );
 
     const totalWords = totalWordsInSentences.reduce(
         (runningTotal, totalWordsInSentence) => runningTotal + totalWordsInSentence,
@@ -57,12 +77,56 @@ export const getAverageNumberOfWordsPerSentence = (text: string): number => {
     return Math.round(totalWords / sentences.length);
 }
 
+export const getProminenceOfMostPopularWord = (text: string, maxPopularityIndex: number): [string, number][] => {
+    const sortedWordAppearanceTally = getTextTupleOrderedByAppearance(text)
+
+    if (arrayIsInvalid(sortedWordAppearanceTally)) return [];
+
+    const popularWordTally = sortedWordAppearanceTally.slice(0, maxPopularityIndex);
+
+    const totalWords = getTotalWords(text);
+
+    const prominenceTuple = popularWordTally.map((wordTally): [string, number] => {
+        const listOfWordPositions = wordTally[2];
+        const positionsSum = listOfWordPositions.reduce(
+            (rollingTotal: number, wordPosition) => wordPosition + rollingTotal,
+            0
+        );
+
+        const prominence = Math.round(
+            (totalWords - (
+                (positionsSum - 1) / listOfWordPositions.length)
+            ) * (100 / totalWords)
+        );
+
+        return [wordTally[0], prominence]
+    });
+
+    return prominenceTuple;
+}
+
+const getTextTupleOrderedByAppearance = (text: string, numberOfWords = 1): textTallyTuple[] => {
+    const textList = numberOfWords && numberOfWords > 1
+        ? getListOfPhrases(text, numberOfWords)
+        : getListOfWords(text);
+
+    if (arrayIsInvalid(textList)) return [];
+
+    return getSortedTallyTuple(textList);
+}
+
 const getAppearanceTally = (textList: string[]): textTally => {
     const textTally: textTally = {};
-    textList.forEach((text: string) => {
-        textTally[text] = textTally[text] && textTally[text].appearances
-            ? {appearances: textTally[text].appearances + 1}
-            : {appearances: 1}
+
+    textList.forEach((text: string, index: number) => {
+        textTally[text] = {
+            appearances: textTally[text] ? textTally[text].appearances + 1 : 1,
+            positions: (
+                textTally[text]?.positions?.length
+                    ? [index, ...textTally[text].positions]
+                    : [index]
+            )
+        }
     });
 
     return textTally;
@@ -75,12 +139,15 @@ const getSortedTallyTuple = (textList: string[]): textTallyTuple[] => {
     return textTallyKeys.map(
         (textTallyKey) => [
             textTallyKey,
-            textListTally[textTallyKey].appearances
+            textListTally[textTallyKey].appearances,
+            textListTally[textTallyKey].positions,
         ] as textTallyTuple
     ).sort(
         (textTallyTuple, previousTextTallyTuple) => previousTextTallyTuple[1] - textTallyTuple[1]
     );
 }
+
+const arrayIsInvalid = (array: unknown[]): boolean => !Array.isArray(array) || array.length < 1;
 
 const getListOfWords = (text: string) => matchTextAgainstRegex(text, /([a-z]+)[ .]/g);
 
